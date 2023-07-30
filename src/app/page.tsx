@@ -263,6 +263,13 @@ export default function Home() {
                 className={cx(styles.order_book_quote, {
                   [styles.ask_new_price]: newPriceMap[ele[0]] === "new_price",
                 })}
+                onAnimationEnd={() => {
+                  setNewPriceMap((preState: any) => {
+                    const temp = { ...preState };
+                    delete temp[ele[0]];
+                    return temp;
+                  });
+                }}
                 key={ele[0]}
               >
                 <div
@@ -280,11 +287,6 @@ export default function Home() {
                   })}
                   onAnimationEnd={() => {
                     setQuotePriceMap((preState: any) => {
-                      const temp = { ...preState };
-                      delete temp[ele[0]];
-                      return temp;
-                    });
-                    setNewPriceMap((preState: any) => {
                       const temp = { ...preState };
                       delete temp[ele[0]];
                       return temp;
@@ -366,6 +368,13 @@ export default function Home() {
                 className={cx(styles.order_book_quote, {
                   [styles.bid_new_price]: newPriceMap[ele[0]] === "new_price",
                 })}
+                onAnimationEnd={() => {
+                  setNewPriceMap((preState: any) => {
+                    const temp = { ...preState };
+                    delete temp[ele[0]];
+                    return temp;
+                  });
+                }}
                 key={ele[0]}
               >
                 <div
@@ -383,11 +392,6 @@ export default function Home() {
                   })}
                   onAnimationEnd={() => {
                     setQuotePriceMap((preState: any) => {
-                      const temp = { ...preState };
-                      delete temp[ele[0]];
-                      return temp;
-                    });
-                    setNewPriceMap((preState: any) => {
                       const temp = { ...preState };
                       delete temp[ele[0]];
                       return temp;
