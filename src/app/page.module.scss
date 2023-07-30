@@ -1,0 +1,92 @@
+.order_book_quote {
+  display: flex;
+  padding: 1px 10px 2px;
+  font-size: 13px;
+  &:hover {
+    background-color: #1e3059;
+  }
+}
+.sell-quote {
+  display: "flex";
+  padding: "1px 10px 2px";
+  background-color: "#FF5B5A";
+}
+.last_price {
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16.8px;
+}
+
+@keyframes size_decrease {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(255, 91, 90, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.size_decrease {
+  animation-name: size_decrease;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
+
+@keyframes size_increase {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(0, 177, 93, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.size_increase {
+  animation-name: size_increase;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
+
+@keyframes ask_new_price {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(255, 91, 90, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.ask_new_price {
+  animation-name: ask_new_price;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
+
+@keyframes bid_new_price {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(0, 177, 93, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.bid_new_price {
+  animation-name: bid_new_price;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+}
