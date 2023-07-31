@@ -107,7 +107,7 @@ export default function Home() {
               } else {
                 temp.push(data.asks[i]);
                 temp.sort(
-                  (a: any, b: any) => parseFloat(b[1]) - parseFloat(a[1])
+                  (a: any, b: any) => parseFloat(b[0]) - parseFloat(a[0])
                 );
                 setNewPriceMap((preState: any) => ({
                   ...preState,
@@ -150,7 +150,7 @@ export default function Home() {
               } else {
                 temp.push(data.bids[i]);
                 temp.sort(
-                  (a: any, b: any) => parseFloat(b[1]) - parseFloat(a[1])
+                  (a: any, b: any) => parseFloat(b[0]) - parseFloat(a[0])
                 );
                 setNewPriceMap((preState: any) => ({
                   ...preState,
