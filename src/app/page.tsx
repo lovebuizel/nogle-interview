@@ -105,7 +105,7 @@ export default function Home() {
                 }
                 temp[index][1] = data.asks[i][1];
               } else {
-                temp.push = data.asks[i];
+                temp.push(data.asks[i]);
                 temp.sort(
                   (a: any, b: any) => parseFloat(b[1]) - parseFloat(a[1])
                 );
@@ -148,7 +148,7 @@ export default function Home() {
                 }
                 temp[index][1] = data.bids[i][1];
               } else {
-                temp.push = data.bids[i];
+                temp.push(data.bids[i]);
                 temp.sort(
                   (a: any, b: any) => parseFloat(b[1]) - parseFloat(a[1])
                 );
