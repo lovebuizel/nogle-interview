@@ -55,8 +55,11 @@ export default function Home() {
   } = useWebSocket("wss://ws.btse.com/ws/futures");
   const [lastPrice, setLastPrice] = useState("0");
   const seqNumRef = useRef(0);
-  const [quotePriceMap, setQuotePriceMap] = useState<any>({});
-  const [newPriceMap, setNewPriceMap] = useState<any>({});
+  const [askQuotePriceMap, setAskQuotePriceMap] = useState<any>({});
+  const [bidQuotePriceMap, setBidQuotePriceMap] = useState<any>({});
+
+  const [askNewPriceMap, setAskNewPriceMap] = useState<any>({});
+  const [bidNewPriceMap, setBidNewPriceMap] = useState<any>({});
 
   const [asks, setAsks] = useState<any>([]);
   const [bids, setBids] = useState<any>([]);
@@ -91,14 +94,14 @@ export default function Home() {
               );
               if (index !== -1) {
                 if (parseInt(data.asks[i][1]) > parseInt(temp[index][1])) {
-                  setQuotePriceMap((preState: any) => ({
+                  setAskQuotePriceMap((preState: any) => ({
                     ...preState,
                     [data.asks[i][0]]: "size_increase",
                   }));
                 } else if (
                   parseInt(data.asks[i][1]) < parseInt(temp[index][1])
                 ) {
-                  setQuotePriceMap((preState: any) => ({
+                  setAskQuotePriceMap((preState: any) => ({
                     ...preState,
                     [data.asks[i][0]]: "size_decrease",
                   }));
@@ -109,7 +112,7 @@ export default function Home() {
                 temp.sort(
                   (a: any, b: any) => parseFloat(b[0]) - parseFloat(a[0])
                 );
-                setNewPriceMap((preState: any) => ({
+                setAskNewPriceMap((preState: any) => ({
                   ...preState,
                   [data.asks[i][0]]: "new_price",
                 }));
@@ -134,14 +137,14 @@ export default function Home() {
               );
               if (index !== -1) {
                 if (parseInt(data.bids[i][1]) > parseInt(temp[index][1])) {
-                  setQuotePriceMap((preState: any) => ({
+                  setBidQuotePriceMap((preState: any) => ({
                     ...preState,
                     [data.bids[i][0]]: "size_increase",
                   }));
                 } else if (
                   parseInt(data.bids[i][1]) < parseInt(temp[index][1])
                 ) {
-                  setQuotePriceMap((preState: any) => ({
+                  setBidQuotePriceMap((preState: any) => ({
                     ...preState,
                     [data.bids[i][0]]: "size_decrease",
                   }));
@@ -152,7 +155,7 @@ export default function Home() {
                 temp.sort(
                   (a: any, b: any) => parseFloat(b[0]) - parseFloat(a[0])
                 );
-                setNewPriceMap((preState: any) => ({
+                setBidNewPriceMap((preState: any) => ({
                   ...preState,
                   [data.bids[i][0]]: "new_price",
                 }));
@@ -261,10 +264,11 @@ export default function Home() {
             return (
               <div
                 className={cx(styles.order_book_quote, {
-                  [styles.ask_new_price]: newPriceMap[ele[0]] === "new_price",
+                  [styles.ask_new_price]:
+                    askNewPriceMap[ele[0]] === "new_price",
                 })}
                 onAnimationEnd={() => {
-                  setNewPriceMap((preState: any) => {
+                  setAskNewPriceMap((preState: any) => {
                     const temp = { ...preState };
                     delete temp[ele[0]];
                     return temp;
@@ -281,12 +285,12 @@ export default function Home() {
                   style={{ flex: "1 1 27%", marginLeft: 7, fontWeight: 500 }}
                   className={cx({
                     [styles.size_increase]:
-                      quotePriceMap[ele[0]] === "size_increase",
+                      askQuotePriceMap[ele[0]] === "size_increase",
                     [styles.size_decrease]:
-                      quotePriceMap[ele[0]] === "size_decrease",
+                      askQuotePriceMap[ele[0]] === "size_decrease",
                   })}
                   onAnimationEnd={() => {
-                    setQuotePriceMap((preState: any) => {
+                    setAskQuotePriceMap((preState: any) => {
                       const temp = { ...preState };
                       delete temp[ele[0]];
                       return temp;
@@ -366,10 +370,11 @@ export default function Home() {
             return (
               <div
                 className={cx(styles.order_book_quote, {
-                  [styles.bid_new_price]: newPriceMap[ele[0]] === "new_price",
+                  [styles.bid_new_price]:
+                    bidNewPriceMap[ele[0]] === "new_price",
                 })}
                 onAnimationEnd={() => {
-                  setNewPriceMap((preState: any) => {
+                  setBidNewPriceMap((preState: any) => {
                     const temp = { ...preState };
                     delete temp[ele[0]];
                     return temp;
@@ -386,12 +391,12 @@ export default function Home() {
                   style={{ flex: "1 1 27%", marginLeft: 7, fontWeight: 500 }}
                   className={cx({
                     [styles.size_increase]:
-                      quotePriceMap[ele[0]] === "size_increase",
+                      bidQuotePriceMap[ele[0]] === "size_increase",
                     [styles.size_decrease]:
-                      quotePriceMap[ele[0]] === "size_decrease",
+                      bidQuotePriceMap[ele[0]] === "size_decrease",
                   })}
                   onAnimationEnd={() => {
-                    setQuotePriceMap((preState: any) => {
+                    setBidQuotePriceMap((preState: any) => {
                       const temp = { ...preState };
                       delete temp[ele[0]];
                       return temp;
